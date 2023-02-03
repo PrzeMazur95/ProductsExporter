@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+     <menu>
+         <add id="YellowCard_ProductsExporter::exporter_menu"
+              title="Products Exporter"
+              module="YellowCard_ProductsExporter"
+              resource="YellowCard_ProductsExporter::exporter_menu"
+              sortOrder="100"
+         />
+         <add id="YellowCard_ProductsExporter::main"
+              title="Products Exporter"
+              module="YellowCard_ProductsExporter"
+              resource="YellowCard_ProductsExporter::main"
+              parent="YellowCard_ProductsExporter::exporter_menu"
+              translate="title"
+              sortOrder="1"
+         />
+         <add id="YellowCard_ProductsExporter::grid"
+              title="Exported Lists"
+              module="YellowCard_ProductsExporter"
+              resource="YellowCard_ProductsExporter::grid"
+              parent="YellowCard_ProductsExporter::main"
+              sortOrder="10"
+              action="productsexporter/index/index"
+         />
+     </menu>
+ </config>
