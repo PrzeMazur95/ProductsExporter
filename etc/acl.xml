@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+     <acl>
+         <resources>
+             <resource id="Magento_Backend::admin">
+                 <resource id="YellowCard_ProductsExporter::exporter_menu" title="Products Exporter">
+                     <resource id="YellowCard_ProductsExporter::main" title="Main menu">
+                         <resource id="YellowCard_ProductsExporter::grid" title="Exported List"/>
+                     </resource>
+                 </resource>
+                 <resource id="YellowCard_ProductsExporter::exporter_config" title="Config" />
+             </resource>
+         </resources>
+     </acl>
+ </config>
