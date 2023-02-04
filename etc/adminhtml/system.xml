@@ -16,6 +16,16 @@
                      <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                      <config_path>yellowcard/general/status</config_path>
                  </field>
+                <field id="statuses" sortOrder="30" showInDefault="1" type="select" showInWebsite="0" showInStore="0">
+                     <label>Status</label>
+                     <comment>From this status we will export products</comment>
+                     <source_model>Magento\Sales\Model\ResourceModel\Order\Status\Collection</source_model>
+                     <config_path>yellowcard/general/status</config_path>
+                     <validate>required-entry</validate>
+                     <depends>
+                         <field id="is_active">1</field>
+                     </depends>
+                 </field>
              </group>
          </section>
      </system>
