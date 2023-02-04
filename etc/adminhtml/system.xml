@@ -16,7 +16,7 @@
                      <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                      <config_path>yellowcard/general/status</config_path>
                  </field>
-                <field id="statuses" sortOrder="30" showInDefault="1" type="select" showInWebsite="0" showInStore="0">
+                 <field id="statuses" sortOrder="30" showInDefault="1" type="select" showInWebsite="0" showInStore="0">
                      <label>Status</label>
                      <comment>From this status we will export products</comment>
                      <source_model>Magento\Sales\Model\ResourceModel\Order\Status\Collection</source_model>
@@ -25,7 +25,16 @@
                      <depends>
                          <field id="is_active">1</field>
                      </depends>
-                 </field>
+                  </field>
+                  <field id="cron" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Cron schedule</label>
+                     <config_path>yellowcard/general/cron</config_path>
+                     <validate>required-entry</validate>
+                     <comment>Set how often export should run. Check https://crontab.guru/ to find how it works</comment>
+                     <depends>
+                         <field id="is_active">1</field>
+                     </depends>
+                   </field>
              </group>
          </section>
      </system>
