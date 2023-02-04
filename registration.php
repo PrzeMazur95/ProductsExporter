@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Przemek\ProductsExporter;
+namespace YellowCard\ProductsExporter;
 
 use Magento\Framework\Component\ComponentRegistrar;
 
