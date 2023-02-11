@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+         <arguments>
+             <argument name="collections" xsi:type="array">
+                 <item name="exported_products_listing_data_source" xsi:type="string">YellowCard\ProductsExporter\Model\ResourceModel\Export\Grid\Collection</item>
+             </argument>
+         </arguments>
+     </type>
+     <type name="YellowCard\ProductsExporter\Model\ResourceModel\Export\Grid\Collection">
+         <arguments>
+             <argument name="mainTable" xsi:type="string">yellowcard_products_export</argument>
+             <argument name="eventPrefix" xsi:type="string">yellowcard_products_export_grid_collection</argument>
+             <argument name="eventObject" xsi:type="string">export_grid_collection</argument>
+             <argument name="resourceModel" xsi:type="string">YellowCard\ProductsExporter\Model\ResourceModel\Export</argument>
+         </arguments>
+     </type>
+ </config>
