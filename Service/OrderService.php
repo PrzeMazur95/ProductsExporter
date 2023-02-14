@@ -12,8 +12,9 @@ use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 class OrderService
 {
     /**
-     * @param CollectionFactory $collectionFactory
-     * @param StatusService     $statusService
+     * @param CollectionFactory        $collectionFactory
+     * @param StatusService            $statusService
+     * @param OrderRepositoryInterface $orderRepository
      */
     public function __construct(
         private CollectionFactory $collectionFactory,
@@ -37,7 +38,7 @@ class OrderService
     }
 
     /**
-     * Loads all orders with specific status, found by ids provided from method above
+     * Returns all orders with specific status, found by ids provided from method above
      *
      * @return array
      */
