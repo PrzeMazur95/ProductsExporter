@@ -7,15 +7,10 @@
      </argument>
      <settings>
          <buttons>
-             <button name="new">
-                 <url path="productsexporter/index/test"/>
-                 <class>primary</class>
-                 <label translate="true">Add New Export</label>
-             </button>
              <button name="prod">
-                 <url path="productsexporter/index/products"/>
+                 <url path="productsexporter/index/export"/>
                  <class>primary</class>
-                 <label translate="true">Products</label>
+                 <label translate="true">Export</label>
              </button>
          </buttons>
          <spinner>exported_products_columns</spinner>
