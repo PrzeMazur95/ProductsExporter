@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Service;
 
+use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
 
 class ExportService
 {
     /**
-     * @param ProductService  $productService
-     * @param LoggerInterface $logger
+     * @param ProductService   $productService
+     * @param LoggerInterface  $logger
+     * @param ManagerInterface $eventManager
      */
-    public function __construct(private ProductService $productService, private LoggerInterface $logger)
+    public function __construct(
+        private ProductService $productService,
+        private LoggerInterface $logger,
+        private ManagerInterface $eventManager)
     {
     }
 
@@ -31,8 +36,10 @@ class ExportService
                         . " " . $item->getOrderId() . '</br>';
                 }
             }
+            $this->eventManager->dispatch('export_success');
         } catch (\Exception $exception) {
             $this->logger->critical($exception->getMessage());
+            $this->eventManager->dispatch('export_failed');
         }
 
     }
