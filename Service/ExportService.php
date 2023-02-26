@@ -6,6 +6,7 @@ namespace YellowCard\ProductsExporter\Service;
 
 use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
+use YellowCard\ProductsExporter\Enum\LoggerMessages;
 
 class ExportService
 {
@@ -38,7 +39,7 @@ class ExportService
             }
             $this->eventManager->dispatch('export_success');
         } catch (\Exception $exception) {
-            $this->logger->critical($exception->getMessage());
+            $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
             $this->eventManager->dispatch('export_failed');
         }
 
