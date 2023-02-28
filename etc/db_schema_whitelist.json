@@ -9,5 +9,15 @@
         "constraint": {
             "PRIMARY": true
         }
+    },
+    "yellowcard_exported_orders": {
+        "column": {
+            "id": true,
+            "orders": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
     }
 }
