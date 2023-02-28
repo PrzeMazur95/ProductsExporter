@@ -12,6 +12,7 @@
     </table>
     <table name="yellowcard_exported_orders" resource="default" engine="innodb" comment="List of orders that has been exported">
         <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
+        <column xsi:type="int" name="raport_id" unsigned="true" nullable="false" />
         <column xsi:type="varchar" name="orders" nullable="false" comment="Order numbers" />
         <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
