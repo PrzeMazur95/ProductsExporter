@@ -14,7 +14,8 @@
         "column": {
             "id": true,
             "orders": true,
-            "created_at": true
+            "created_at": true,
+            "raport_id": true
         },
         "constraint": {
             "PRIMARY": true
