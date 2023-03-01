@@ -9,6 +9,9 @@ use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOr
 
 class ExportedOrders extends AbstractModel
 {
+    const ORDERS = 'orders';
+    const RAPORT_ID = 'raport_id';
+    
     protected function _construct()
     {
         $this->_init(ExportedOrdersResource::class);
