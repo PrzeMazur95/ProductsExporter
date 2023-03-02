@@ -8,6 +8,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use Psr\Log\LoggerInterface;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
@@ -23,7 +24,8 @@ class OrderService
         private StatusService $statusService,
         private OrderRepositoryInterface $orderRepository,
         private ExportedOrdersFactory $exportedOrdersFactory,
-        private ExportedOrdersResource $exportedOrdersResource
+        private ExportedOrdersResource $exportedOrdersResource,
+        private LoggerInterface $logger
     ) {
     }
 
@@ -67,7 +69,11 @@ class OrderService
         $exportedOrders->setOrders($stringOfOrderNumbers);
         $exportedOrders->setRaportId(1);
 
-        $this->exportedOrdersResource->save($exportedOrders);        
+        try{
+            $this->exportedOrdersResource->save($exportedOrders);
+        } catch (\Exception $exception) {
+            $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
+        }
     }
 
     private function convertOrderArrayToString(array $orderIds): string
