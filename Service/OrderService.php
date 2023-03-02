@@ -45,8 +45,10 @@ class OrderService
     public function getOrders(): array
     {
         $orders = [];
+        $orderIds = [];
         foreach ($this->getOrderIds() as $orderId) {
             $orders[] = $this->orderRepository->get($orderId->getIncrementId());
+            $orderIds[] = $orderId->getIncrementId();
         }
 
         return $orders;
