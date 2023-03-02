@@ -8,6 +8,8 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
+use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
 class OrderService
 {
@@ -20,6 +22,8 @@ class OrderService
         private CollectionFactory $collectionFactory,
         private StatusService $statusService,
         private OrderRepositoryInterface $orderRepository,
+        private ExportedOrdersFactory $exportedOrdersFactory,
+        private ExportedOrdersResource $exportedOrdersResource
     ) {
     }
 
@@ -58,6 +62,12 @@ class OrderService
     private function saveOrderIds(array $orderIds): void
     {
         $stringOfOrderNumbers = $this->convertOrderArrayToString($orderIds);
+
+        $exportedOrders = $this->exportedOrdersFactory->create();
+        $exportedOrders->setOrders($stringOfOrderNumbers);
+        $exportedOrders->setRaportId(1);
+
+        $this->exportedOrdersResource->save($exportedOrders);        
     }
 
     private function convertOrderArrayToString(array $orderIds): string
