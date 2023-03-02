@@ -9,6 +9,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use Psr\Log\LoggerInterface;
+use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
