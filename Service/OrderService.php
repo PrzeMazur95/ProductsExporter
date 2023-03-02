@@ -50,7 +50,13 @@ class OrderService
             $orders[] = $this->orderRepository->get($orderId->getIncrementId());
             $orderIds[] = $orderId->getIncrementId();
         }
+        $this->saveOrderIds($orderIds);
 
         return $orders;
+    }
+
+    private function saveOrderIds(array $orderIds): void
+    {
+        
     }
 }
