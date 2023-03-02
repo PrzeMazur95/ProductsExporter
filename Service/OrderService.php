@@ -16,12 +16,12 @@ use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOr
 class OrderService
 {
     /**
-     * @param CollectionFactory $collectionFactory
-     * @param StatusService $statusService
+     * @param CollectionFactory        $collectionFactory
+     * @param StatusService            $statusService
      * @param OrderRepositoryInterface $orderRepository
-     * @param ExportedOrdersFactory $exportedOrdersFactory
-     * @param ExportedOrdersResource $exportedOrdersResource
-     * @param LoggerInterface $logger
+     * @param ExportedOrdersFactory    $exportedOrdersFactory
+     * @param ExportedOrdersResource   $exportedOrdersResource
+     * @param LoggerInterface          $logger
      */
     public function __construct(
         private CollectionFactory $collectionFactory,
@@ -46,7 +46,7 @@ class OrderService
 
         return $collection;
     }
-
+    
     /**
      * Returns all orders with specific status, found by ids provided from method above
      *
