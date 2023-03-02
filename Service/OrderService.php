@@ -61,6 +61,13 @@ class OrderService
         return $orders;
     }
 
+    /**
+     * Saves string of orders from which the export was generated
+     *
+     * @param array $orderIds
+     *
+     * @return void
+     */
     private function saveOrderIds(array $orderIds): void
     {
         $stringOfOrderNumbers = $this->convertOrderArrayToString($orderIds);
@@ -76,6 +83,13 @@ class OrderService
         }
     }
 
+    /**
+     * Converts array of given orders to a string, to store it in this form in the database
+     *
+     * @param array $orderIds
+     *
+     * @return string
+     */
     private function convertOrderArrayToString(array $orderIds): string
     {
         return implode(",", $orderIds);
