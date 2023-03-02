@@ -57,6 +57,11 @@ class OrderService
 
     private function saveOrderIds(array $orderIds): void
     {
-        
+        $stringOfOrderNumbers = $this->convertOrderArrayToString($orderIds);
+    }
+
+    private function convertOrderArrayToString(array $orderIds): string
+    {
+        return implode(",", $orderIds);
     }
 }
