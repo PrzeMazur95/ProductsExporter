@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace YellowCard\ProductsExporter\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use YellowCard\ProductsExporter\Api\Data\ExportedOrdersInterface;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
-class ExportedOrders extends AbstractModel
+class ExportedOrders extends AbstractModel implements ExportedOrdersInterface
 {
     const ORDERS = 'orders';
     const RAPORT_ID = 'raport_id';
