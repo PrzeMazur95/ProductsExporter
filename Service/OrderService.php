@@ -9,6 +9,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use Psr\Log\LoggerInterface;
+use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
 use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
@@ -29,7 +30,8 @@ class OrderService
         private OrderRepositoryInterface $orderRepository,
         private ExportedOrdersFactory $exportedOrdersFactory,
         private ExportedOrdersResource $exportedOrdersResource,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private ExportedOrdersRepositoryInterface $exportedOrdersRepository
     ) {
     }
 
@@ -46,7 +48,7 @@ class OrderService
 
         return $collection;
     }
-    
+
     /**
      * Returns all orders with specific status, found by ids provided from method above
      *
@@ -80,11 +82,7 @@ class OrderService
         $exportedOrders->setOrders($stringOfOrderNumbers);
         $exportedOrders->setRaportId(1);
 
-        try{
-            $this->exportedOrdersResource->save($exportedOrders);
-        } catch (\Exception $exception) {
-            $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
-        }
+        $this->exportedOrdersRepository->save($exportedOrders);
     }
 
     /**
