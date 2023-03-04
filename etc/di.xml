@@ -15,4 +15,5 @@
              <argument name="resourceModel" xsi:type="string">YellowCard\ProductsExporter\Model\ResourceModel\Export</argument>
          </arguments>
      </type>
+     <preference for="YellowCard\ProductsExporter\Api\Data\ExportedOrdersInterface" type="YellowCard\ProductsExporter\Model\ExportedOrders"/>
  </config>
