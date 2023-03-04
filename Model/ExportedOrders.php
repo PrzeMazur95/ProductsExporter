@@ -49,4 +49,12 @@ class ExportedOrders extends AbstractModel implements ExportedOrdersInterface
     {
         $this->setData(self::RAPORT_ID, $raport_id);
     }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+       return $this->getData(self::CREATED_AT);
+    }
 }
