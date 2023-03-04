@@ -9,18 +9,18 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
-use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
 class OrderService
 {
     /**
-     * @param CollectionFactory        $collectionFactory
-     * @param StatusService            $statusService
+     * @param CollectionFactory $collectionFactory
+     * @param StatusService $statusService
      * @param OrderRepositoryInterface $orderRepository
-     * @param ExportedOrdersFactory    $exportedOrdersFactory
-     * @param ExportedOrdersResource   $exportedOrdersResource
+     * @param ExportedOrdersFactory $exportedOrdersFactory
+     * @param ExportedOrdersResource $exportedOrdersResource
+     * @param ExportedOrdersRepositoryInterface $exportedOrdersRepository
      */
     public function __construct(
         private CollectionFactory $collectionFactory,
