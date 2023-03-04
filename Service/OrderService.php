@@ -8,7 +8,6 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
-use Psr\Log\LoggerInterface;
 use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
 use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
@@ -22,7 +21,6 @@ class OrderService
      * @param OrderRepositoryInterface $orderRepository
      * @param ExportedOrdersFactory    $exportedOrdersFactory
      * @param ExportedOrdersResource   $exportedOrdersResource
-     * @param LoggerInterface          $logger
      */
     public function __construct(
         private CollectionFactory $collectionFactory,
@@ -30,7 +28,6 @@ class OrderService
         private OrderRepositoryInterface $orderRepository,
         private ExportedOrdersFactory $exportedOrdersFactory,
         private ExportedOrdersResource $exportedOrdersResource,
-        private LoggerInterface $logger,
         private ExportedOrdersRepositoryInterface $exportedOrdersRepository
     ) {
     }
