@@ -9,12 +9,14 @@ use YellowCard\ProductsExporter\Api\Data\ExportedOrdersInterface;
 use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
 use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
+use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders\CollectionFactory;
 
 class ExportedOrdersRepository implements ExportedOrdersRepositoryInterface
 {
     public function __construct(
         private ExportedOrdersResource $exportedOrdersResource,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private CollectionFactory $exportedOrdersCollectionFactory
     ) {
     }
 
@@ -31,6 +33,10 @@ class ExportedOrdersRepository implements ExportedOrdersRepositoryInterface
 
     public function getLastExportedOrders(): ExportedOrdersInterface
     {
-        // TODO: Implement getLastExportedOrders() method.
+        $lastExportedOrdersCollection = $this->exportedOrdersCollectionFactory->create();
+        $lastExportedOrdersCollection->addOrder('id', 'DESC');
+        $lastExportedOrdersEntity = $lastExportedOrdersCollection->getFirstItem();
+
+        return $lastExportedOrdersEntity;
     }
 }
