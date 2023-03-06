@@ -54,7 +54,7 @@
      *
      * @return void
      */
-    public function updateExportedOrdersEntity(int $raportId): void
+    private function updateExportedOrdersEntity(int $raportId): void
     {
         $lastExportedOrders = $this->exportedOrdersRepository->getLastExportedOrders();
         $lastExportedOrders->setRaportId($raportId);
