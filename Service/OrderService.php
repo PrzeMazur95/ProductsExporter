@@ -77,7 +77,6 @@ class OrderService
 
         $exportedOrders = $this->exportedOrdersFactory->create();
         $exportedOrders->setOrders($stringOfOrderNumbers);
-        $exportedOrders->setRaportId(1);
 
         $this->exportedOrdersRepository->save($exportedOrders);
     }
