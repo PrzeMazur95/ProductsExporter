@@ -29,6 +29,9 @@
      }
 
      /**
+      * Generate new row in db yellowcard_products_export table,
+      * sets date, raport status and title
+      *
       * @return void
       * @throws Exception
       */
