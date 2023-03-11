@@ -149,7 +149,7 @@
                  <label translate="true">Created</label>
              </settings>
          </column>
-         <actionsColumn name="actions" class="Magento\Cms\Ui\Component\Listing\Column\PageActions">
+         <actionsColumn name="actions" class="YellowCard\ProductsExporter\Ui\Component\Listing\Column\PageActions">
              <settings>
                  <indexField>id</indexField>
                  <resizeEnabled>false</resizeEnabled>
