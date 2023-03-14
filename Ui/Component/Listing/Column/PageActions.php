@@ -11,7 +11,7 @@ use Magento\Framework\UrlInterface;
 
 class PageActions extends Column
 {
-    const EXPORT_URL_REPROCES = 'productsexporter/adminhtml/index/reprocess';
+    const EXPORT_URL_REPROCES = 'productsexporter/index/reprocess';
 
     public function __construct(
         private readonly urlInterface $urlBuilder,
