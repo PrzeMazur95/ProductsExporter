@@ -9,6 +9,7 @@ use YellowCard\ProductsExporter\Api\Data\ExportedOrdersInterface;
 use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
 use YellowCard\ProductsExporter\Enum\LoggerMessages;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
+use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders\Collection;
 use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders\CollectionFactory;
 
 class ExportedOrdersRepository implements ExportedOrdersRepositoryInterface
@@ -17,11 +18,13 @@ class ExportedOrdersRepository implements ExportedOrdersRepositoryInterface
      * @param ExportedOrdersResource $exportedOrdersResource
      * @param LoggerInterface        $logger
      * @param CollectionFactory      $exportedOrdersCollectionFactory
+     * @param ExportedOrdersFactory  $exportedOrdersFactory
      */
     public function __construct(
         private ExportedOrdersResource $exportedOrdersResource,
         private LoggerInterface $logger,
-        private CollectionFactory $exportedOrdersCollectionFactory
+        private CollectionFactory $exportedOrdersCollectionFactory,
+        private ExportedOrdersFactory $exportedOrdersFactory
     ) {
     }
 
@@ -55,5 +58,20 @@ class ExportedOrdersRepository implements ExportedOrdersRepositoryInterface
         $lastExportedOrdersEntity = $lastExportedOrdersCollection->getFirstItem();
 
         return $lastExportedOrdersEntity;
+    }
+
+    /**
+     * Gets from db array with orders from specific raport id
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function getByRaportId(int $id): array
+    {
+        $exportedOrders = $this->exportedOrdersCollectionFactory->create();
+        $exportedOrders->addFieldToFilter('raport_id', $id);
+
+        return $exportedOrders->getFirstItem()->getData();
     }
 }
