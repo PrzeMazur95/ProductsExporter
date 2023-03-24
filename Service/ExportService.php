@@ -18,30 +18,26 @@ class ExportService
     public function __construct(
         private ProductService $productService,
         private LoggerInterface $logger,
-        private ManagerInterface $eventManager)
-    {
+        private ManagerInterface $eventManager
+    ) {
     }
 
     /**
-     * Shows on the screen purchases products from provided orders. Sku, quantity and order Id
-     *
-     * @return void
+     * FOr now returns an array, each row contains products ordered in specific order. Will create a file which will be downloadable
      */
-    public function createExport(): void
+    public function createExport()
     {
+        $products = [];
         try {
             foreach ($this->productService->getProducts() as $product) {
-                foreach ($product as $item) {
-                    echo $item->getSku()
-                        . " " . number_format((float)$item->getQtyOrdered(), 2)
-                        . " " . $item->getOrderId() . '</br>';
-                }
+                $products[] = $product;
             }
             $this->eventManager->dispatch('export_success');
+
+            return $products;
         } catch (\Exception $exception) {
             $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
             $this->eventManager->dispatch('export_failed');
         }
-
     }
 }
