@@ -73,6 +73,6 @@ class CsvCreatorService
      */
     private function setDateForCurrentExport(): string
     {
-        return date('Y-m-d', time());
+        return date('Y-m-d-h-i', time());
     }
 }
