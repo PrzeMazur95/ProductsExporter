@@ -11,14 +11,16 @@ use YellowCard\ProductsExporter\Enum\LoggerMessages;
 class ExportService
 {
     /**
-     * @param ProductService   $productService
-     * @param LoggerInterface  $logger
-     * @param ManagerInterface $eventManager
+     * @param ProductService    $productService
+     * @param LoggerInterface   $logger
+     * @param ManagerInterface  $eventManager
+     * @param CsvCreatorService $csvCreatorService
      */
     public function __construct(
         private ProductService $productService,
         private LoggerInterface $logger,
-        private ManagerInterface $eventManager
+        private ManagerInterface $eventManager,
+        private CsvCreatorService $csvCreatorService
     ) {
     }
 
@@ -32,12 +34,14 @@ class ExportService
             foreach ($this->productService->getProducts() as $product) {
                 $products[] = $product;
             }
-            $this->eventManager->dispatch('export_success');
-
-            return $products;
         } catch (\Exception $exception) {
             $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
             $this->eventManager->dispatch('export_failed');
         }
+        $this->csvCreatorService->createCsvFromGivenExportedProducts($products);
+
+        $this->eventManager->dispatch('export_success');
+
+        return $products;
     }
 }
