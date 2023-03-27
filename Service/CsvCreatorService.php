@@ -16,6 +16,13 @@ class CsvCreatorService
 
     private array $csv_column_names = ['SKU', 'QUANTITY', 'ORDER_ID'];
 
+     /**
+     * Creates a csv file from provided purchased products from orders. Will be stored in above path.
+     *
+     * @param array $exportedProducts
+     *
+     * @return void
+     */
     public function createCsvFromGivenExportedProducts(array $exportedProducts): void
     {
 
@@ -36,6 +43,13 @@ class CsvCreatorService
         fclose($csvFile);
     }
 
+     /**
+     * Return array which in rows contains information about purchased product - sku, qty, order id
+     *
+     * @param array $exportedProducts
+     *
+     * @return array
+     */
     private function getFromArrayOfProductObjectsRequiredInformation(array $exportedProducts): array
     {
         $productsArray = [];
@@ -52,6 +66,11 @@ class CsvCreatorService
         return $productsArray;
     }
 
+     /**
+     * Return readable current data string
+     *
+     * @return string
+     */
     private function setDateForCurrentExport(): string
     {
         return date('Y-m-d', time());
