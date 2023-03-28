@@ -35,6 +35,15 @@
                         <field id="is_active">1</field>
                     </depends>
                 </field>
+                <field id="quantity" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Orders quantity</label>
+                    <config_path>yellowcard/general/quantity</config_path>
+                    <validate>required-entry</validate>
+                    <comment>Set from how many orders products will be exported. From default, it is 300</comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>
