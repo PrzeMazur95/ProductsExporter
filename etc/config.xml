@@ -3,10 +3,10 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
      <default>
          <yellowcard>
-             <default>
+             <general>
                  <is_active>1</is_active>
                  <cron>*/2 * * * *</cron>
-             </default>
+             </general>
          </yellowcard>
      </default>
  </config>
