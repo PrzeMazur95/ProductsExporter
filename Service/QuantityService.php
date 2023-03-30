@@ -11,7 +11,7 @@
      /**
       * @param ScopeConfigInterface $scopeConfig
       */
-     public function __construct(private ScopeConfigInterface $scopeConfig)
+     public function __construct(private readonly ScopeConfigInterface $scopeConfig)
      {
      }
 
