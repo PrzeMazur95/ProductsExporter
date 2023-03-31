@@ -28,7 +28,8 @@ class OrderService
         private OrderRepositoryInterface $orderRepository,
         private ExportedOrdersFactory $exportedOrdersFactory,
         private ExportedOrdersResource $exportedOrdersResource,
-        private ExportedOrdersRepositoryInterface $exportedOrdersRepository
+        private ExportedOrdersRepositoryInterface $exportedOrdersRepository,
+        private QuantityService $quantityService
     ) {
     }
 
@@ -41,6 +42,7 @@ class OrderService
     {
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter('status', $this->statusService->getStatus());
+        $collection->setPageSize($this->quantityService->getOrdersQuantityToExport());
         $collection->addAttributeToSelect(OrderInterface::INCREMENT_ID);
 
         return $collection;
