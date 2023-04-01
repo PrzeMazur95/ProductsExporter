@@ -42,6 +42,7 @@ class OrderService
     {
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter('status', $this->statusService->getStatus());
+        $collection->setOrder('created_at', 'asc');
         $collection->setPageSize($this->quantityService->getOrdersQuantityToExport());
         $collection->addAttributeToSelect(OrderInterface::INCREMENT_ID);
 
