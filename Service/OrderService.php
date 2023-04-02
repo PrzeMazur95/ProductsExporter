@@ -10,7 +10,6 @@ use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use YellowCard\ProductsExporter\Api\ExportedOrdersRepositoryInterface;
 use YellowCard\ProductsExporter\Model\ExportedOrdersFactory;
-use YellowCard\ProductsExporter\Model\ResourceModel\ExportedOrders as ExportedOrdersResource;
 
 class OrderService
 {
@@ -19,15 +18,14 @@ class OrderService
      * @param StatusService $statusService
      * @param OrderRepositoryInterface $orderRepository
      * @param ExportedOrdersFactory $exportedOrdersFactory
-     * @param ExportedOrdersResource $exportedOrdersResource
      * @param ExportedOrdersRepositoryInterface $exportedOrdersRepository
+     * @param QuantityService $quantityService
      */
     public function __construct(
         private CollectionFactory $collectionFactory,
         private StatusService $statusService,
         private OrderRepositoryInterface $orderRepository,
         private ExportedOrdersFactory $exportedOrdersFactory,
-        private ExportedOrdersResource $exportedOrdersResource,
         private ExportedOrdersRepositoryInterface $exportedOrdersRepository,
         private QuantityService $quantityService
     ) {
