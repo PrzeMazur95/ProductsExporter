@@ -8,9 +8,11 @@ class ReprocessService
 {
     /**
      * @param LoadOrdersService $loadOrdersService
+     * @param LoadProductsService $loadProductsService
      */
     public function __construct(
-        private readonly LoadOrdersService $loadOrdersService
+        private readonly LoadOrdersService $loadOrdersService,
+        private readonly LoadProductsService $loadProductsService
     ) {
     }
 
@@ -24,5 +26,6 @@ class ReprocessService
     public function reprocess(array $specificRaport)
     {
         $orders = $this->loadOrdersService->execute($specificRaport);
+        $products = $this->loadProductsService->execute($orders);
     }
 }
