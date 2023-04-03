@@ -31,6 +31,6 @@ class ReprocessService
     {
         $orders = $this->loadOrdersService->execute($specificRaport);
         $products = $this->loadProductsService->execute($orders);
-        $this->csvCreatorService->createCsvFromGivenExportedProducts($products);
+        $this->csvCreatorService->createCsvFromGivenExportedProducts($products, 'reprocess');
     }
 }
