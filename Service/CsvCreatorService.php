@@ -20,15 +20,18 @@ class CsvCreatorService
      * Creates a csv file from provided purchased products from orders. Will be stored in above path.
      *
      * @param array $exportedProducts
+     * @param bool|string  $reprocess
      *
      * @return void
      */
-    public function createCsvFromGivenExportedProducts(array $exportedProducts): void
+    public function createCsvFromGivenExportedProducts(array $exportedProducts, bool|string $reprocess = false): void
     {
 
         $arrayOfProducts = $this->getFromArrayOfProductObjectsRequiredInformation($exportedProducts);
 
-        $currentExportName = self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION;
+        ($reprocess === false) ?
+             $currentExportName = self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION :
+             $currentExportName = self::PATH.$reprocess.'_'.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION;
 
         $csvFile = fopen($currentExportName, 'w+');
 
