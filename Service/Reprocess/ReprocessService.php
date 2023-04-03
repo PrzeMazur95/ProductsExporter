@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Service\Reprocess;
 
+use YellowCard\ProductsExporter\Service\CsvCreatorService;
+
 class ReprocessService
 {
     /**
      * @param LoadOrdersService $loadOrdersService
      * @param LoadProductsService $loadProductsService
+     * @param CsvCreatorService   $csvCreatorService
      */
     public function __construct(
         private readonly LoadOrdersService $loadOrdersService,
-        private readonly LoadProductsService $loadProductsService
+        private readonly LoadProductsService $loadProductsService,
+        private readonly CsvCreatorService $csvCreatorService
     ) {
     }
 
@@ -27,5 +31,6 @@ class ReprocessService
     {
         $orders = $this->loadOrdersService->execute($specificRaport);
         $products = $this->loadProductsService->execute($orders);
+        $this->csvCreatorService->createCsvFromGivenExportedProducts($products);
     }
 }
