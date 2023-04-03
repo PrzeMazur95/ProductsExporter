@@ -30,7 +30,7 @@ class CsvCreatorService
         $arrayOfProducts = $this->getFromArrayOfProductObjectsRequiredInformation($exportedProducts);
 
         $currentExportName = $this->setNameForExportFile($reprocess);
-        
+
         $csvFile = fopen($currentExportName, 'w+');
 
         //Adds column names to be first row
@@ -78,6 +78,8 @@ class CsvCreatorService
     }
 
      /**
+      * Return file name
+      *
       * @param bool|string $reprocess
       *
       * @return string
