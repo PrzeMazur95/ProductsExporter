@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Service;
 
+use YellowCard\ProductsExporter\Enum\ReprocessEnum;
+
 class CsvCreatorService
 {
     const PATH = 'exportedProducts/';
@@ -20,11 +22,11 @@ class CsvCreatorService
      * Creates a csv file from provided purchased products from orders. Will be stored in above path.
      *
      * @param array $exportedProducts
-     * @param bool|string  $reprocess
+     * @param array  $reprocess
      *
      * @return void
      */
-    public function createCsvFromGivenExportedProducts(array $exportedProducts, bool|string $reprocess = false): void
+    public function createCsvFromGivenExportedProducts(array $exportedProducts, array $reprocess = []): void
     {
 
         $arrayOfProducts = $this->getFromArrayOfProductObjectsRequiredInformation($exportedProducts);
@@ -80,14 +82,14 @@ class CsvCreatorService
      /**
       * Return file name
       *
-      * @param bool|string $reprocess
+      * @param array $reprocess
       *
       * @return string
       */
-      private function setNameForExportFile(bool|string $reprocess): string
+      private function setNameForExportFile(array $reprocess): string
       {
-          return ($reprocess === false) ?
+          return (empty($reprocess)) ?
               self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION :
-              self::PATH.$reprocess.'_'.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION;
+              self::PATH.$reprocess[ReprocessEnum::NAME->value].'_'.$reprocess[ReprocessEnum::ID->value].self::EXTENSION;
       }
 }

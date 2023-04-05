@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Service\Reprocess;
 
+use YellowCard\ProductsExporter\Enum\ReprocessEnum;
 use YellowCard\ProductsExporter\Service\CsvCreatorService;
 
 class ReprocessService
@@ -29,8 +30,12 @@ class ReprocessService
      */
     public function reprocess(array $specificRaport)
     {
-        $orders = $this->loadOrdersService->execute($specificRaport);
-        $products = $this->loadProductsService->execute($orders);
-        $this->csvCreatorService->createCsvFromGivenExportedProducts($products, 'reprocess');
+        $reprocess = [];
+
+         $orders = $this->loadOrdersService->execute($specificRaport);
+         $reprocess[ReprocessEnum::NAME->value] = ReprocessEnum::REPROCESS->value;
+         $reprocess[ReprocessEnum::ID->value] = $specificRaport[ReprocessEnum::ID->value];
+         $products = $this->loadProductsService->execute($orders);
+         $this->csvCreatorService->createCsvFromGivenExportedProducts($products, $reprocess);
     }
 }
