@@ -36,6 +36,10 @@ class PageActions extends Column
                         'href' => $this->urlBuilder->getUrl(self::EXPORT_URL_REPROCES, ['id' => $item['id']]),
                         'label' => __('Reprocess'),
                     ];
+                    $item[$name]['download'] = [
+                        'href' => $this->urlBuilder->getUrl(self::EXPORT_URL_REPROCES, ['id' => $item['id']]),
+                        'label' => __('Download'),
+                    ];
                 }
             }
         }
