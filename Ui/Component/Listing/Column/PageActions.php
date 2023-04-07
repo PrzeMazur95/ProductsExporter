@@ -12,6 +12,7 @@ use Magento\Framework\UrlInterface;
 class PageActions extends Column
 {
     const EXPORT_URL_REPROCES = 'productsexporter/index/reprocess';
+    const DOWNLOAD_URL = 'productsexporter/download/download';
 
     public function __construct(
         private readonly urlInterface $urlBuilder,
@@ -37,7 +38,7 @@ class PageActions extends Column
                         'label' => __('Reprocess'),
                     ];
                     $item[$name]['download'] = [
-                        'href' => $this->urlBuilder->getUrl(self::EXPORT_URL_REPROCES, ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl(self::DOWNLOAD_URL, ['id' => $item['id'], 'title' => $item['title']]),
                         'label' => __('Download'),
                     ];
                 }
