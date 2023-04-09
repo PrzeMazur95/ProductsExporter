@@ -9,7 +9,7 @@ use YellowCard\ProductsExporter\Enum\ReprocessEnum;
 class CsvCreatorService
 {
     const PATH = 'exportedProducts/';
-    const FILE_NAME = 'Exported_Products';
+    const FILE_NAME = 'Exported_Products_from_';
     const EXTENSION = '.csv';
 
     const SKU = 'sku';

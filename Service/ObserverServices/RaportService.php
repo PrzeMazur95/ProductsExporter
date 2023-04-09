@@ -40,7 +40,7 @@
          try{
             $export = $this->exportFactory->create();
 
-            $export->setTitle('Raport_from_'.date('Y-m-d', time()));
+            $export->setTitle('Exported_Products_from_'.date('Y-m-d-h-i', time()));
             $export->setStatus('Success');
             $export->setData(time());
  
