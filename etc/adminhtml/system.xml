@@ -44,6 +44,16 @@
                         <field id="is_active">1</field>
                     </depends>
                 </field>
+                <field id="deleteExportFile" type="select" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                     <label>Delete Export file</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <config_path>yellowcard/general/deleteExportFile</config_path>
+                     <validate>required-entry</validate>
+                     <comment>Do you want to delete file with exported products after download?</comment>
+                     <depends>
+                         <field id="is_active">1</field>
+                     </depends>
+                 </field>
             </group>
         </section>
     </system>
