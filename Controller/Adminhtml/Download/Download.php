@@ -7,42 +7,40 @@ namespace YellowCard\ProductsExporter\Controller\Adminhtml\Download;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Response\Http\FileFactory;
-use Magento\Framework\App\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 class Download extends Action implements HttpGetActionInterface
 {
     private const DOWNLOAD_PATH = 'exportedProducts/';
     private const EXTENSION = '.csv';
 
+    /**
+     * @param FileFactory          $fileFactory
+     * @param ScopeConfigInterface $scopeConfig
+     * @param LoggerInterface      $logger
+     * @param Context              $context
+     */
     public function __construct(
         private readonly FileFactory $fileFactory,
         private readonly ScopeConfigInterface $scopeConfig,
-        private readonly UrlInterface $url,
-        private readonly ResponseInterface $response,
+        private readonly LoggerInterface $logger,
         Context $context
     ) {
         parent::__construct($context);
     }
 
     /**
+     * Call private method to download export file
+     *
      * @throws Exception
      */
     public function execute()
     {
         $this->downloadFile();
-
-
-//        //should without redirect render message, that file was downloaded, or there is no file
-        //redirect couses no download, not message
-//        $url = $this->url->getUrl('productsexporter/index/index');
-//        $this->response->setRedirect($url);
-//
-//        return $this->response;
     }
 
     /**
@@ -55,14 +53,19 @@ class Download extends Action implements HttpGetActionInterface
        return (bool)$this->scopeConfig->getValue('yellowcard/general/deleteExportFile');
     }
 
-    private function downloadFile()
+    /**
+     * Trigger download file action
+     *
+     * @return bool
+     */
+    private function downloadFile(): bool
     {
         $title =  $this->getRequest()->getParam('title');
         $absoluteFilePath = self::DOWNLOAD_PATH.$title.self::EXTENSION;
 
         try{
             if(!file_exists($absoluteFilePath)) {
-                $notFoundMsg = __('File does not exists, reproces your raport')->render();
+                return false;
             }
             $this->fileFactory->create(
                 $title.self::EXTENSION,
@@ -73,10 +76,12 @@ class Download extends Action implements HttpGetActionInterface
                 ],
                 DirectoryList::PUB
             );
-            $msg = __('File was successfully downloaded')->render();
-            $this->messageManager->addSuccessMessage($msg);
         } catch (Exception $e) {
-            $this->messageManager->addErrorMessage(__('Something went wrong: %1', $e->getMessage()));
+            $this->logger->error('Something went wrong when downloading export file: %1'. $e->getMessage());
+
+            return false;
         }
+
+        return true;
     }
 }
