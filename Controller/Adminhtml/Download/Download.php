@@ -8,6 +8,7 @@ declare(strict_types=1);
  use Magento\Backend\App\Action;
  use Magento\Backend\App\Action\Context;
  use Magento\Framework\App\Action\HttpGetActionInterface;
+ use Magento\Framework\App\Config\ScopeConfigInterface;
  use Magento\Framework\App\Filesystem\DirectoryList;
  use Magento\Framework\App\Response\Http\FileFactory;
 
@@ -18,6 +19,7 @@ declare(strict_types=1);
 
      public function __construct(
          private readonly FileFactory $fileFactory,
+         private readonly ScopeConfigInterface $scopeConfig,
          Context $context
      ) {
          parent::__construct($context);
@@ -40,9 +42,19 @@ declare(strict_types=1);
              [
                  'type' => 'filename',
                  'value' => $absoluteFilePath,
-                 'rm' => false
+                 'rm' => $this->ifFileShouldBeDeleted()
              ],
              DirectoryList::PUB
          );
      }
+
+     /**
+      * Get from configuration, if admin wants to delete file after download or no
+      *
+      * @return bool
+      */
+      private function ifFileShouldBeDeleted(): bool
+      {
+         return (bool)$this->scopeConfig->getValue('yellowcard/general/deleteExportFile');
+      }
  }
