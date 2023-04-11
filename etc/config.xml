@@ -7,6 +7,7 @@
                  <is_active>1</is_active>
                  <cron>*/2 * * * *</cron>
                  <quantity>300</quantity>
+                 <deleteExportFile>0</deleteExportFile>
              </general>
          </yellowcard>
      </default>
