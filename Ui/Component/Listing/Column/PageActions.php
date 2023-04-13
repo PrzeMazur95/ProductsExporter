@@ -38,7 +38,7 @@ class PageActions extends Column
                         'label' => __('Reprocess'),
                     ];
                     $item[$name]['download'] = [
-                        'href' => $this->urlBuilder->getUrl(self::DOWNLOAD_URL, ['id' => $item['id'], 'title' => $item['title']]),
+                        'href' => $this->urlBuilder->getUrl(self::DOWNLOAD_URL, ['id' => $item['id'], 'title' => $item['title'], 'reprocess' => false]),
                         'label' => __('Download'),
                     ];
                     $item[$name]['downloadReprocessed'] = [

@@ -43,7 +43,9 @@ class Download extends Action implements HttpGetActionInterface
      */
     public function execute()
     {
-        if(!$this->downloadFile()){
+        $ifReprocessedShouldBeDownloaded = $this->checkIfUserWantsToDownloadReprocessedFile();
+
+        if(!$this->downloadFile($ifReprocessedShouldBeDownloaded)){
             $this->messageManager->addErrorMessage(__($this->errorMessage));
             $resultPage = $this->pageFactory->create();
             $resultPage->getConfig()->getTitle()->set(__('File not found'));
@@ -64,11 +66,23 @@ class Download extends Action implements HttpGetActionInterface
     }
 
     /**
-     * Trigger download file action
+     * Check if user clicked download reprocessed file
      *
      * @return bool
      */
-    private function downloadFile(): bool
+    private function checkIfUserWantsToDownloadReprocessedFile(): bool
+    {
+        return (bool)$this->getRequest()->getParam('reprocess');
+    }
+
+    /**
+     * Trigger download file action, original or reprocessed
+     *
+     * @param bool $ifReprocessedShouldBeDownloaded
+     *
+     * @return bool
+     */
+    private function downloadFile(bool $ifReprocessedShouldBeDownloaded): bool
     {
         $title =  $this->getRequest()->getParam('title');
         $absoluteFilePath = self::DOWNLOAD_PATH.$title.self::EXTENSION;
