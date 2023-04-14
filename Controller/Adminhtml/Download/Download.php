@@ -52,7 +52,6 @@ class Download extends Action implements HttpGetActionInterface
 
             return $resultPage;
         }
-        return true;
     }
 
     /**
