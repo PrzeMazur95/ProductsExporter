@@ -34,7 +34,7 @@ class ReprocessService
 
          $orders = $this->loadOrdersService->execute($specificRaport);
          $reprocess[ReprocessEnum::NAME->value] = ReprocessEnum::REPROCESS->value;
-         $reprocess[ReprocessEnum::ID->value] = $specificRaport[ReprocessEnum::ID->value];
+         $reprocess[ReprocessEnum::ORIGINAL_RAPORT_ID->value] = $specificRaport[ReprocessEnum::ORIGINAL_RAPORT_ID->value];
          $products = $this->loadProductsService->execute($orders);
          $this->csvCreatorService->createCsvFromGivenExportedProducts($products, $reprocess);
     }

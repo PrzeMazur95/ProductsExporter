@@ -18,8 +18,8 @@ class CsvCreatorService
 
     private array $csv_column_names = ['SKU', 'QUANTITY', 'ORDER_ID'];
 
-     /**
-     * Creates a csv file from provided purchased products from orders. Will be stored in above path.
+    /**
+     * Creates a csv file from provided purchased products from orders.
      *
      * @param array $exportedProducts
      * @param array  $reprocess
@@ -46,7 +46,7 @@ class CsvCreatorService
         fclose($csvFile);
     }
 
-     /**
+    /**
      * Return array which in rows contains information about purchased product - sku, qty, order id
      *
      * @param array $exportedProducts
@@ -69,7 +69,7 @@ class CsvCreatorService
         return $productsArray;
     }
 
-     /**
+    /**
      * Return readable current data string
      *
      * @return string
@@ -79,17 +79,15 @@ class CsvCreatorService
         return date('Y-m-d-h-i', time());
     }
 
-     /**
-      * Return file name
-      *
-      * @param array $reprocess
-      *
-      * @return string
-      */
-      private function setNameForExportFile(array $reprocess): string
-      {
-          return (empty($reprocess)) ?
-              self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION :
-              self::PATH.$reprocess[ReprocessEnum::NAME->value].'_'.$reprocess[ReprocessEnum::ID->value].self::EXTENSION;
-      }
+    /**
+     * @param array $reprocess
+     *
+     * @return string
+     */
+    private function setNameForExportFile(array $reprocess): string
+    {
+        return (empty($reprocess)) ?
+            self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION :
+            self::PATH.$reprocess[ReprocessEnum::NAME->value].'_'.$reprocess[ReprocessEnum::ORIGINAL_RAPORT_ID->value].self::EXTENSION;
+    }
 }
