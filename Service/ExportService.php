@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Service;
 
+use Exception;
 use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
 use YellowCard\ProductsExporter\Enum\LoggerMessages;
@@ -17,24 +18,24 @@ class ExportService
      * @param CsvCreatorService $csvCreatorService
      */
     public function __construct(
-        private ProductService $productService,
-        private LoggerInterface $logger,
-        private ManagerInterface $eventManager,
-        private CsvCreatorService $csvCreatorService
+         private readonly ProductService $productService,
+         private readonly LoggerInterface $logger,
+         private readonly ManagerInterface $eventManager,
+         private readonly CsvCreatorService $csvCreatorService
     ) {
     }
 
     /**
-     * FOr now returns an array, each row contains products ordered in specific order. Will create a file which will be downloadable
+     * Generate csv file with ordered products
      */
-    public function createExport()
+    public function createExport(): array
     {
         $products = [];
         try {
             foreach ($this->productService->getProducts() as $product) {
                 $products[] = $product;
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
             $this->eventManager->dispatch('export_failed');
         }

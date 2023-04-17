@@ -4,7 +4,4 @@
      <event name="export_success">
          <observer name="export_success" instance="YellowCard\ProductsExporter\Observer\ExportSuccess"/>
      </event>
-     <event name="export_failed">
-         <observer name="export_failed" instance="YellowCard\ProductsExporter\Observer\ExportFailed"/>
-     </event>
  </config>
