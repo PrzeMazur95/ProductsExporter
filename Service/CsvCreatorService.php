@@ -8,12 +8,12 @@ use YellowCard\ProductsExporter\Enum\ReprocessEnum;
 
 class CsvCreatorService
 {
-    const PATH = 'exportedProducts/';
+    const PATH      = 'exportedProducts/';
     const FILE_NAME = 'Exported_Products_from_';
     const EXTENSION = '.csv';
 
-    const SKU = 'sku';
-    const QTY = 'qty_ordered';
+    const SKU      = 'sku';
+    const QTY      = 'qty_ordered';
     const ORDER_ID = 'order_id';
 
     private array $csv_column_names = ['SKU', 'QUANTITY', 'ORDER_ID'];
@@ -22,27 +22,21 @@ class CsvCreatorService
      * Creates a csv file from provided purchased products from orders.
      *
      * @param array $exportedProducts
-     * @param array  $reprocess
+     * @param array $reprocess
      *
      * @return void
      */
     public function createCsvFromGivenExportedProducts(array $exportedProducts, array $reprocess = []): void
     {
-
         $arrayOfProducts = $this->getFromArrayOfProductObjectsRequiredInformation($exportedProducts);
-
         $currentExportName = $this->setNameForExportFile($reprocess);
 
         $csvFile = fopen($currentExportName, 'w+');
-
         //Adds column names to be first row
         fputcsv($csvFile, $this->csv_column_names);
-
-        foreach ($arrayOfProducts as $row)
-        {
+        foreach ($arrayOfProducts as $row) {
             fputcsv($csvFile, $row);
         }
-
         fclose($csvFile);
     }
 
@@ -62,7 +56,8 @@ class CsvCreatorService
                 $productsArray[] = [
                     $item[self::SKU],
                     number_format((float)$item[self::QTY], 2),
-                    $item[self::ORDER_ID]];
+                    $item[self::ORDER_ID]
+                ];
             }
         }
 
@@ -87,7 +82,11 @@ class CsvCreatorService
     private function setNameForExportFile(array $reprocess): string
     {
         return (empty($reprocess)) ?
-            self::PATH.self::FILE_NAME.$this->setDateForCurrentExport().self::EXTENSION :
-            self::PATH.$reprocess[ReprocessEnum::NAME->value].'_'.$reprocess[ReprocessEnum::ORIGINAL_RAPORT_ID->value].self::EXTENSION;
+            self::PATH . self::FILE_NAME . $this->setDateForCurrentExport() . self::EXTENSION :
+            self::PATH .
+            $reprocess[ReprocessEnum::NAME->value] .
+            '_' .
+            $reprocess[ReprocessEnum::ORIGINAL_RAPORT_ID->value] .
+            self::EXTENSION;
     }
 }
