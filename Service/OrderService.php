@@ -22,12 +22,12 @@ class OrderService
      * @param QuantityService $quantityService
      */
     public function __construct(
-        private CollectionFactory $collectionFactory,
-        private StatusService $statusService,
-        private OrderRepositoryInterface $orderRepository,
-        private ExportedOrdersFactory $exportedOrdersFactory,
-        private ExportedOrdersRepositoryInterface $exportedOrdersRepository,
-        private QuantityService $quantityService
+        private readonly CollectionFactory $collectionFactory,
+        private readonly StatusService $statusService,
+        private readonly OrderRepositoryInterface $orderRepository,
+        private readonly ExportedOrdersFactory $exportedOrdersFactory,
+        private readonly ExportedOrdersRepositoryInterface $exportedOrdersRepository,
+        private readonly QuantityService $quantityService
     ) {
     }
 
