@@ -11,7 +11,7 @@
      /**
       * @param ScopeConfigInterface $scopeConfig
       */
-     public function __construct(private ScopeConfigInterface $scopeConfig)
+     public function __construct(private readonly ScopeConfigInterface $scopeConfig)
      {
      }
 
@@ -22,8 +22,6 @@
       */
      public function getStatus(): string
      {
-         $status = $this->scopeConfig->getValue('yellowcard/general/statuses');
-         
-         return $status;
+        return $this->scopeConfig->getValue('yellowcard/general/statuses');
      }
  }
