@@ -12,11 +12,17 @@
 
  class RaportService
  {
+      /**
+      * @param ExportRepositoryInterface         $exportRepository
+      * @param ExportFactory                     $exportFactory
+      * @param LoggerInterface                   $logger
+      * @param ExportedOrdersRepositoryInterface $exportedOrdersRepository
+      */
      public function __construct(
-         private ExportRepositoryInterface $exportRepository,
-         private ExportFactory $exportFactory,
-         private LoggerInterface $logger,
-         private ExportedOrdersRepositoryInterface $exportedOrdersRepository
+        private readonly ExportRepositoryInterface $exportRepository,
+        private readonly ExportFactory $exportFactory,
+        private readonly LoggerInterface $logger,
+        private readonly ExportedOrdersRepositoryInterface $exportedOrdersRepository
      ) {
      }
 
