@@ -15,11 +15,13 @@
       * @param RaportService $raportService
       */
      public function __construct(
-         private RaportService $raportService
+         private readonly RaportService $raportService
      ) {
      }
 
      /**
+      * Trigger generate new row in main listing with info about generated raport. 
+      *
       * @param Observer $observer
       *
       * @return void
