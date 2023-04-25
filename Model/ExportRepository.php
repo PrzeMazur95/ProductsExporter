@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace YellowCard\ProductsExporter\Model;
 
+use Exception;
 use Psr\Log\LoggerInterface;
 use YellowCard\ProductsExporter\Api\Data\ExportInterface;
 use YellowCard\ProductsExporter\Api\ExportRepositoryInterface;
@@ -17,8 +18,8 @@ class ExportRepository implements ExportRepositoryInterface
      * @param LoggerInterface $logger
      */
     public function __construct(
-        private ExportResource $exportResource,
-        private LoggerInterface $logger
+        private readonly ExportResource $exportResource,
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -33,7 +34,7 @@ class ExportRepository implements ExportRepositoryInterface
     {
         try{
             $this->exportResource->save($export);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->logger->critical(LoggerMessages::DB_FAILED->value. " : " .$exception->getMessage());
         }
         return $export;
