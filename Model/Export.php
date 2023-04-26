@@ -16,26 +16,45 @@ class Export extends AbstractModel implements ExportInterface
         $this->_init(ExportResource::class);
     }
 
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
        return $this->getData(self::TITLE);
     }
 
+    /**
+     * @param string $title
+     *
+     * @return void
+     */
     public function setTitle(string $title): void
     {
         $this->setData(self::TITLE, $title);
     }
 
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->getData(self::STATUS);
     }
 
-    public function setStatus(string $status)
+    /**
+     * @param string $status
+     *
+     * @return void
+     */
+    public function setStatus(string $status): void
     {
         $this->setData(self::STATUS, $status);
     }
 
+    /**
+     * @return string
+     */
     public function getCreatedAt(): string
     {
         return $this->getData(self::CREATED_AT);
