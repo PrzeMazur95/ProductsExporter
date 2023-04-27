@@ -9,16 +9,10 @@
  class Cron
  {
      /**
-      * @var LoggerInterface
-      */
-     private $logger;
-
-     /**
       * @param LoggerInterface $logger
       */
-     public function __construct(LoggerInterface $logger)
+     public function __construct(private readonly LoggerInterface $logger)
      {
-         $this->logger = $logger;
      }
 
      /**
