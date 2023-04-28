@@ -18,7 +18,7 @@ class Export extends Action implements HttpGetActionInterface
      * @param Context       $context
      */
     public function __construct(
-        private PageFactory $pageFactory,
+        private readonly PageFactory $pageFactory,
         Context $context
     ) {
         parent::__construct($context);
