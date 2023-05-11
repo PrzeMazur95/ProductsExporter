@@ -18,9 +18,9 @@
      /**
       * Returns status of orders, that client would like to export products from. Provided in module configuration
       *
-      * @return string
+      * @return string|null
       */
-     public function getStatus(): string
+     public function getStatus(): string|null
      {
         return $this->scopeConfig->getValue('yellowcard/general/statuses');
      }
