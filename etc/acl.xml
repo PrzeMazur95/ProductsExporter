@@ -7,8 +7,8 @@
                      <resource id="YellowCard_ProductsExporter::main" title="Main menu">
                          <resource id="YellowCard_ProductsExporter::grid" title="Exported List"/>
                      </resource>
+                         <resource id="YellowCard_ProductsExporter::exporter_config" title="Config" />
                  </resource>
-                 <resource id="YellowCard_ProductsExporter::exporter_config" title="Config" />
              </resource>
          </resources>
      </acl>
