@@ -36,4 +36,38 @@ Magento 2 module
  #### - Delete Export file 
  here we can set, if after download of exported csv, we want to delete this file on the server
 
- .
+# Usage Guide
+### If we have enabled our module, we can see new icon in left main sidebar
+![img.png](docs/img/products_exporter_icon.png)
+#### So go to it, then click Exported Lists, you will see grid below 
+![img.png](docs/img/export_listing.png)
+*from the beginning we will not have any exported files, so we do not see any rows in our grid*
+ ## We have two ways of generating exports 
+ ###  * Manually, by clicking Export button
+ ### * By Cron 
+#### - based on configuration, so how many, and with which status orders should be processed, export file will be generated. We will see new row in our listing. 
+ *Only by manual generating the export, you will be redirected to an admin panel site, with a list of exported products. See screen below. We have to manually click again on products exporter icon to see the listing. Cron job do not show that products in admin, will only update listing with new row*
+ ![img.png](docs/img/admin_panel_products.png)
+
+### After successfully created export, we can see on the listing one new row. By Clickng select we will be able to : 
+#### - download csv file with exported products
+#### - if the status is failed, or downloaded products is crashed, we can reprocess the csv. Module knows, from which orders raport has been generated, so even if you have changed statuses, raport will be generated from the same orders
+#### - download reprocessed file
+![img.png](docs/img/listing_with_one_export.png)
+
+### Also in our path, we should see csv file /pub/exportedProducts/
+![img.png](docs/img/csv_on_the_server.png)
+
+### In downloaded file, columns are comma separated. After download from admin side our file with purchased products : 
+![img.png](docs/img/csv_file_opening_settings.png)
+#### File contains : 
+- Sku - so which products to collect
+- Quantity - how many was purchased
+- Order ID - to which order te product belongs
+
+In our case, two orders has been processed, in configuration 'Pending' status is set :
+![img.png](docs/img/list_of_processed_orders.png)
+Each order, has only one product purchased, which we have in our exported csv file
+![img.png](docs/img/order_3_items.png)
+![img.png](docs/img/order_4_items.png)
+![img.png](docs/img/csv_content.png)
