@@ -71,3 +71,17 @@ Each order, has only one product purchased, which we have in our exported csv fi
 ![img.png](docs/img/order_3_items.png)
 ![img.png](docs/img/order_4_items.png)
 ![img.png](docs/img/csv_content.png)
+
+---
+KNOWN ISSUES -
+
+Error when no orders with provided status
+
+"Download reprocessed" downloads original file, reprocessed only on the server
+Cron not tested
+
+Cannot mass delete on export grid
+
+Not tested for grouped, configurable and bundle products.
+
+Api to be developed/checked
